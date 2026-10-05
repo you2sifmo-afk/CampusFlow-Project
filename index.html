@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusFlow - Design Thinking AI Prototype</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span>CampusFlow</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="switchTab('prototype')"><i class="fa-solid fa-laptop-code"></i> Live Prototype</button>
+      <button class="nav-btn" onclick="switchTab('rubric')"><i class="fa-solid fa-list-check"></i> Design Thinking Process</button>
+      <button class="nav-btn" onclick="switchTab('ai-audit')"><i class="fa-solid fa-robot"></i> AI Interaction Audit</button>
+      <button class="nav-btn" onclick="switchTab('validation')"><i class="fa-solid fa-users-viewfinder"></i> User Validation (3 Testers)</button>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Tab 1: Live Prototype -->
+    <section id="tab-prototype" class="tab-content active">
+      <div class="banner">
+        <h2>Campus Resource & Peer Study Finder</h2>
+        <p>A smart campus friction-reduction prototype created with AI-assisted design thinking.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Module 1: Real-time Study Hub -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-book-open-reader"></i> Campus Study Spaces (Real-Time Availability)</h3>
+          </div>
+          <p class="desc">Solves student friction: Long queues & unavailable quiet study spots.</p>
+          <div class="spaces-list" id="spaces-list">
+            <!-- Dynamic Space Items -->
+          </div>
+        </div>
+
+        <!-- Module 2: Peer Mentorship / Subject Help -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-hands-holding-circle"></i> Quick Peer Help Hub</h3>
+          </div>
+          <p class="desc">Connect with peer mentors for immediate doubt clarification.</p>
+          <form id="help-form" onsubmit="addRequest(event)">
+            <input type="text" id="subject-input" placeholder="Subject / Course (e.g. Data Structures)" required>
+            <input type="text" id="topic-input" placeholder="Specific topic or doubt" required>
+            <button type="submit" class="primary-btn"><i class="fa-solid fa-paper-plane"></i> Post Request</button>
+          </form>
+          <div class="requests-feed" id="requests-feed">
+            <h4>Live Requests:</h4>
+            <div id="requests-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Design Thinking Portfolio -->
+    <section id="tab-rubric" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-diagram-project"></i> Design Thinking Stages (Fresh Discovery Track)</h2>
+        <div class="steps-container">
+          <div class="step-box">
+            <span class="step-num">01</span>
+            <h4>Empathize</h4>
+            <p><strong>Observed Friction:</strong> Students waste 20-35 mins finding quiet slots or subject mentors between lecture breaks.</p>
+            <p><strong>Interviews:</strong> Conducted with 3 batchmates regarding campus resource visibility.</p>
+          </div>
+          <div class="step-box">
+            <span class="step-num">02</span>
+            <h4>Define</h4>
+            <p><strong>Problem Statement:</strong> <em>"Campus undergraduate students need an intuitive, transparent dashboard to check study zone capacity and seek immediate peer mentorship without formal scheduling bottlenecks."</em></p>
+          </div>
+          <div class="step-box">
+            <span class="step-num">03</span>
+            <h4>Ideate with AI</h4>
+            <p>Generated 12 feature concepts using LLMs, filtered down to 2 high-impact frictionless flows (Live Spaces & Peer Board).</p>
+          </div>
+          <div class="step-box">
+            <span class="step-num">04</span>
+            <h4>Prototype & Test</h4>
+            <p>Developed lightweight web interactive interface tested with 3 real student peers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: AI Interaction Audit -->
+    <section id="tab-ai-audit" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-microchip"></i> Full AI Interaction Audit (Required for RAALE Sem-3)</h2>
+        <p class="desc">Documentation of prompts used during the Ideate phase, what was accepted, rejected, and hallucination corrections.</p>
+        
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Prompt Given</th>
+              <th>AI Suggestion</th>
+              <th>Status</th>
+              <th>Reason / Hallucination Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"Propose 5 campus digital tools to reduce daily college stress."</td>
+              <td>Suggested automatic biometric classroom reservation system.</td>
+              <td><span class="badge badge-reject">Rejected</span></td>
+              <td>Requires expensive hardware colleges don't deploy openly; hallucinates easy student API access.</td>
+            </tr>
+            <tr>
+              <td>"Create a lightweight peer learning queue with no database dependencies."</td>
+              <td>Recommended client-side session state & instant browser-based board.</td>
+              <td><span class="badge badge-adopt">Adopted</span></td>
+              <td>Practical, fast, low-friction, easily hostable on GitHub Pages.</td>
+            </tr>
+            <tr>
+              <td>"How to validate study desk density accurately?"</td>
+              <td>AI suggested camera live-feed processing with OpenCV in frontend.</td>
+              <td><span class="badge badge-modified">Corrected</span></td>
+              <td>Hallucinated browser security permissions; replaced with crowdsourced check-in status.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab 4: Validation & Feedback -->
+    <section id="tab-validation" class="tab-content">
+      <div class="card">
+        <h2><i class="fa-solid fa-clipboard-check"></i> Tester Feedback (3 Real Users)</h2>
+        <div class="testers-grid">
+          <div class="tester-card">
+            <h4>Tester 1: Rahul (CS - Sem 3)</h4>
+            <p class="rating">Rating: ★★★★★</p>
+            <p>"The real-time space indicator saves me from walking all the way to Central Library Block B when it's full."</p>
+          </div>
+          <div class="tester-card">
+            <h4>Tester 2: Ananya (IT - Sem 3)</h4>
+            <p class="rating">Rating: ★★★★☆</p>
+            <p>"The peer request board is great. Would love a direct filter by programming languages like Java and Python."</p>
+          </div>
+          <div class="tester-card">
+            <h4>Tester 3: Sameer (AI&DS - Sem 3)</h4>
+            <p class="rating">Rating: ★★★★★</p>
+            <p>"Very fast and responsive. Works directly on smartphone browser without needing to install an APK."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
